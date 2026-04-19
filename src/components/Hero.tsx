@@ -130,7 +130,7 @@ export default function Hero({ onBookClick }: { onBookClick: () => void }) {
                         <div className="h-full w-full bg-slate-900 flex flex-col items-center justify-center px-6 text-center gap-3">
                           <Smartphone className="w-16 h-16 text-accent" />
                           <p className="text-sm font-black uppercase tracking-widest text-white">Shop Front Image</p>
-                          <p className="text-[11px] text-slate-400">Place a shop photo at <span className="font-bold text-white">/shop-front.jpg</span></p>
+                          <p className="text-[11px] text-slate-400">Place a shop photo at <span className="font-bold text-white">{SHOP_INFO.shopImage}</span></p>
                         </div>
                       )}
                     </div>
