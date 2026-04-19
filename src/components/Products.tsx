@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { ShoppingBag, Star, MessageCircle } from "lucide-react";
+import { BatteryCharging, Cable, Headphones, MessageCircle, Shield, ShoppingBag, Star } from "lucide-react";
 import { SHOP_INFO } from "../constants";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -9,40 +9,45 @@ export default function Products() {
   const products = [
     {
       name: "Premium Wireless Neckband",
-      image: "https://picsum.photos/seed/neckband/400/400",
-      price: "₹799",
+      price: "Rs 799",
       tag: "Best Seller",
       description: "40 hours playtime, deep bass, water resistant.",
+      icon: <Headphones className="w-12 h-12" />,
+      tone: "from-slate-900 to-primary",
     },
     {
       name: "Fast Charging USB-C Cable",
-      image: "https://picsum.photos/seed/usbc/400/400",
-      price: "₹249",
+      price: "Rs 249",
       tag: "Essential",
       description: "Military grade braided cable, 60W power delivery.",
+      icon: <Cable className="w-12 h-12" />,
+      tone: "from-primary-dark to-accent",
     },
     {
       name: "Magnetic Mobile Cover",
-      image: "https://picsum.photos/seed/case/400/400",
-      price: "₹450",
+      price: "Rs 450",
       tag: "New Arrival",
       description: "Shockproof protection with camera guard.",
+      icon: <Shield className="w-12 h-12" />,
+      tone: "from-slate-800 to-premium",
     },
     {
       name: "Ultra HD Tempered Glass",
-      image: "https://picsum.photos/seed/glass/400/400",
-      price: "₹199",
+      price: "Rs 199",
       tag: "Quality",
       description: "9H hardness, smudge-free coating.",
+      icon: <BatteryCharging className="w-12 h-12" />,
+      tone: "from-success to-primary",
     },
   ];
+
   const handleOrder = (name: string) => {
     const message = `Hello, I'm interested in buying the ${name}. Is it available?`;
     window.open(`https://wa.me/${SHOP_INFO.whatsapp}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   return (
-    <section id="products" className="py-24 bg-white">
+    <section id="products" className="py-24 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="max-w-2xl">
@@ -50,7 +55,7 @@ export default function Products() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="text-primary font-bold tracking-widest uppercase text-sm mb-4"
+              className="section-eyebrow mb-5"
             >
               {t('products.subtitle')}
             </motion.p>
@@ -59,12 +64,12 @@ export default function Products() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl font-black text-slate-900 uppercase tracking-tight"
+              className="display-font text-4xl md:text-5xl font-bold text-slate-950 uppercase"
             >
               {t('products.title')}
             </motion.h2>
           </div>
-          <button className="text-primary font-bold hover:translate-x-2 transition-transform flex items-center gap-2 group">
+          <button className="secondary-button px-5 py-3 font-black text-xs uppercase tracking-widest group">
             Browse All <ShoppingBag className="w-5 h-5 group-hover:rotate-12 transition-transform" />
           </button>
         </div>
@@ -73,33 +78,36 @@ export default function Products() {
           {products.map((product, index) => (
             <motion.div
               key={product.name}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -6 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              className="vibrant-card rounded-lg overflow-hidden group hover:border-primary transition-all"
+              className="premium-card group"
             >
-              <div className="relative h-40 overflow-hidden bg-slate-100 flex items-center justify-center">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute top-2 right-2 bg-primary text-white text-[8px] font-black uppercase px-2 py-0.5 rounded">
+              <div className={`relative h-44 overflow-hidden bg-gradient-to-br ${product.tone} flex items-center justify-center text-white`}>
+                <div className="absolute inset-0 premium-grid opacity-20" />
+                <motion.div
+                  whileHover={{ rotate: -4, scale: 1.06 }}
+                  className="relative w-24 h-24 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center shadow-2xl"
+                >
+                  {product.icon}
+                </motion.div>
+                <div className="absolute top-3 right-3 bg-white/90 text-secondary text-[8px] font-black uppercase tracking-widest px-2 py-1 rounded-md">
                   {product.tag}
                 </div>
               </div>
 
-              <div className="p-4">
-                <h3 className="font-bold text-secondary text-sm mb-1 uppercase tracking-tight">
+              <div className="relative p-5">
+                <h3 className="font-black text-secondary text-sm mb-2 uppercase tracking-wider">
                   {product.name}
                 </h3>
-                <div className="text-primary font-black text-sm mb-3">{product.price}</div>
-                
-                <button 
-                   onClick={() => handleOrder(product.name)}
-                   className="w-full bg-slate-50 border border-slate-200 hover:bg-success hover:text-white text-slate-700 py-2 rounded-md font-bold text-xs transition-all flex items-center justify-center gap-2"
+                <p className="text-slate-500 text-xs leading-relaxed min-h-[36px] mb-4">{product.description}</p>
+                <div className="text-primary font-black text-base mb-4">{product.price}</div>
+
+                <button
+                  onClick={() => handleOrder(product.name)}
+                  className="w-full bg-slate-50 border border-slate-200 hover:bg-success hover:text-white text-slate-700 py-3 rounded-md font-black text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2"
                 >
                   <MessageCircle className="w-3.5 h-3.5" /> Order via WhatsApp
                 </button>
@@ -107,40 +115,50 @@ export default function Products() {
             </motion.div>
           ))}
         </div>
-        
-        {/* Banner */}
-        <div className="mt-20 relative rounded-[3rem] overflow-hidden bg-primary p-12 lg:p-20 text-white flex flex-col lg:flex-row items-center justify-between gap-12 group">
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-black/10 skew-x-12 transform translate-x-1/4" />
+
+        <div className="mt-20 premium-dark-card p-8 lg:p-12 text-white flex flex-col lg:flex-row items-center justify-between gap-10 group">
+          <div className="absolute inset-0 premium-grid opacity-20" />
           <div className="relative z-10 max-w-xl">
             <div className="flex items-center gap-2 mb-6">
-              {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />)}
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+              ))}
               <span className="font-bold ml-2">5 Star Service</span>
             </div>
-            <h3 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
+            <h3 className="display-font text-3xl md:text-5xl font-bold mb-6 leading-tight">
               Looking for a specific model cover or charger?
             </h3>
             <p className="text-white/80 text-lg mb-8">
-              We have a massive stock of accessories for all old and new models. Just ping us on WhatsApp!
+              We have a massive stock of accessories for old and new models. Just ping us on WhatsApp.
             </p>
-            <a 
+            <a
               href={`https://wa.me/${SHOP_INFO.whatsapp}`}
-              className="inline-flex items-center gap-3 bg-white text-primary px-8 py-4 rounded-2xl font-black text-lg shadow-xl shadow-black/10 hover:scale-105 transition-transform"
+              className="inline-flex items-center gap-3 bg-white text-primary px-7 py-4 rounded-md font-black text-sm uppercase tracking-widest shadow-xl shadow-black/10 hover:-translate-y-1 transition-transform"
             >
               Ask Inventory
               <MessageCircle className="w-6 h-6" />
             </a>
           </div>
-          
-          <div className="relative z-10 lg:w-1/3 flex justify-center">
-             <div className="relative">
-                <div className="absolute inset-0 bg-white/20 blur-3xl rounded-full" />
-                <img 
-                  src="https://picsum.photos/seed/stock/500/500" 
-                  alt="Stock" 
-                  className="relative w-full max-w-[300px] aspect-square rounded-[3rem] object-cover rotate-6 group-hover:rotate-0 transition-transform duration-700 shadow-2xl"
-                  referrerPolicy="no-referrer"
-                />
-             </div>
+
+          <div className="relative z-10 lg:w-1/3 w-full max-w-sm">
+            <div className="grid grid-cols-2 gap-3 rotate-2 group-hover:rotate-0 transition-transform duration-500">
+              {["Cables", "Covers", "Glass", "Audio"].map((item, index) => (
+                <div key={item} className="rounded-lg border border-white/20 bg-white/10 p-5 text-center">
+                  <div className="mx-auto mb-3 h-10 w-10 rounded-md bg-white/10 flex items-center justify-center text-accent">
+                    {index === 0 ? (
+                      <Cable className="w-5 h-5" />
+                    ) : index === 1 ? (
+                      <Shield className="w-5 h-5" />
+                    ) : index === 2 ? (
+                      <ShoppingBag className="w-5 h-5" />
+                    ) : (
+                      <Headphones className="w-5 h-5" />
+                    )}
+                  </div>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-white/70">{item}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

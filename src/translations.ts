@@ -6,47 +6,155 @@ export const translations: any = {
       products: "Products",
       about: "About",
       contact: "Contact",
-      bookNow: "Book Now"
+      bookNow: "Book Now",
     },
     hero: {
-      tagline: "Trusted Professional Service",
-      title: "Premium Mobile & Watch Care Center",
-      description: "Leading experts in mobile telecom repairs for over 15+ years. We provide same-day repairs, original components, and the best collection of accessories.",
+      tagline: "Trusted Device Care",
+      title: "Premium Mobile & Watch Repair Studio",
+      description:
+        "Same-day repairs, genuine-grade parts, careful diagnostics, and premium accessories from a trusted Bhiwandi telecom specialist.",
       cta: "Book Appointment",
       call: "Call Now",
       years: "Years",
       repairs: "Repairs",
-      rating: "Rating"
+      rating: "Rating",
     },
     common: {
       whatsappNow: "WhatsApp Now",
       orderViaWhatsApp: "Order via WhatsApp",
       learnMore: "Learn More",
-      send: "Send",
+      send: "Send Message",
       sending: "Sending...",
       success: "Success!",
       experience: "Experience",
-      wholesale: "Wholesale Inquiry"
+      wholesale: "Wholesale Inquiry",
+      analysing: "Analysing",
+    },
+    services: {
+      title: "Expert Repair Services",
+      subtitle: "Precision Repairs",
+      mobile: {
+        title: "Mobile Repairing",
+        desc: "Display, battery, charging, speaker, camera, software, and deep-level repairs for all major brands.",
+      },
+      watch: {
+        title: "Watch Repairing",
+        desc: "Battery change, strap repair, glass replacement, and careful servicing for analog and smart watches.",
+      },
+      accessories: {
+        title: "Accessories Sales",
+        desc: "Premium chargers, cables, covers, tempered glass, adapters, and daily-use mobile essentials.",
+      },
+      audio: {
+        title: "Neckbands & Audio",
+        desc: "Sales and service support for earphones, neckbands, Bluetooth speakers, and audio accessories.",
+      },
+    },
+    products: {
+      title: "Premium Accessories",
+      subtitle: "Curated Shop Collection",
+      categories: {
+        all: "All Items",
+        audio: "Audio Gear",
+        protection: "Protection",
+        power: "Power & Cables",
+      },
+    },
+    about: {
+      title: "Built on Trust",
+      subtitle: "15+ Years of Service",
+      ownerRole: "Founder & Lead Technician",
+      bio: "Ajaz Ahmad has spent more than 15 years solving everyday device problems with honest advice, careful repair work, and a customer-first approach.",
+    },
+    contact: {
+      title: "Ready to Repair Your Device?",
+      subtitle: "Get In Touch",
+      description:
+        "Visit the shop, call directly, or message on WhatsApp for a quick diagnosis and clear repair quote.",
+      form: {
+        fullName: "Full Name",
+        mobile: "Mobile Number",
+        device: "Device / Issue",
+        message: "Your Message",
+        placeholderName: "Enter your name",
+        placeholderPhone: "+91 00000 00000",
+        placeholderMessage: "Tell us about your device issue...",
+      },
+      info: {
+        call: "Call Us",
+        whatsapp: "WhatsApp Chat",
+        location: "Location",
+        visitUs: "Visit Us",
+        getDirections: "Get Directions",
+      },
+    },
+    testimonials: {
+      title: "Customers Trust Our Work",
+    },
+    ai: {
+      welcome: "Hi! Tell me your device issue and I will guide you with the best next step.",
+      button: "Repair Assistant",
+      placeholder: "Type your device issue...",
+    },
+    footer: {
+      tagline:
+        "Premium mobile repairs, watch service, and trusted accessories for Bhiwandi customers.",
+      explore: "Explore",
+      expertise: "Expertise",
+      connect: "Connect",
+      rights: "All rights reserved.",
+    },
+  },
+  hi: {
+    nav: {
+      home: "Home",
+      services: "Services",
+      products: "Products",
+      about: "About",
+      contact: "Contact",
+      bookNow: "Book Karein",
+    },
+    hero: {
+      tagline: "Trusted Device Care",
+      title: "Premium Mobile Aur Watch Repair Studio",
+      description:
+        "Same-day repair, genuine-grade parts, clear diagnosis, aur premium accessories ek trusted Bhiwandi telecom specialist se.",
+      cta: "Appointment Book Karein",
+      call: "Call Karein",
+      years: "Years",
+      repairs: "Repairs",
+      rating: "Rating",
+    },
+    common: {
+      whatsappNow: "WhatsApp Karein",
+      orderViaWhatsApp: "WhatsApp Par Order",
+      learnMore: "Aur Jaanein",
+      send: "Message Bhejein",
+      sending: "Sending...",
+      success: "Success!",
+      experience: "Experience",
+      wholesale: "Wholesale Inquiry",
+      analysing: "Checking",
     },
     services: {
       title: "Expert Repair Services",
       subtitle: "Professional Solutions",
       mobile: {
         title: "Mobile Repairing",
-        desc: "All brand smartphones (Samsung, iPhone, Oppo, Vivo, Realme, Xiaomi, etc.) fix."
+        desc: "Display, battery, charging, speaker, camera, software aur deep-level repair sabhi major brands ke liye.",
       },
       watch: {
         title: "Watch Repairing",
-        desc: "Expert servicing for all digital and analog watches with original parts."
+        desc: "Battery change, strap repair, glass replacement aur analog/smart watch ki careful servicing.",
       },
       accessories: {
         title: "Accessories Sales",
-        desc: "High-quality chargers, cables, tempered glass, and premium mobile covers."
+        desc: "Premium chargers, cables, covers, tempered glass, adapters aur daily-use mobile essentials.",
       },
       audio: {
         title: "Neckbands & Audio",
-        desc: "Repair and sales of neckbands, earphones, and all audio devices."
-      }
+        desc: "Earphones, neckbands, Bluetooth speakers aur audio accessories ki sales aur service support.",
+      },
     },
     products: {
       title: "Premium Accessories",
@@ -55,132 +163,52 @@ export const translations: any = {
         all: "All Items",
         audio: "Audio Gear",
         protection: "Protection",
-        power: "Power & Cables"
-      }
+        power: "Power & Cables",
+      },
     },
     about: {
-      title: "Our Legacy",
-      subtitle: "15+ Years Service",
-      ownerRole: "Expert Technician & Founder",
-      bio: "Ajaz Ahmad is a veteran in the mobile repair industry with over 1.5 decades of experience. His dedication to quality has made AL-MADINA TELECOM the most trusted name in Bhiwandi."
+      title: "Trust Par Bana Naam",
+      subtitle: "15+ Years Ki Service",
+      ownerRole: "Founder & Lead Technician",
+      bio: "Ajaz Ahmad 15+ years se honest advice, careful repair work, aur customer-first service ke saath device problems solve kar rahe hain.",
     },
     contact: {
-      title: "Ready to Repair Your Device?",
-      subtitle: "Get In Touch",
-      description: "Visit our shop or contact us via WhatsApp to get an instant quote for your repair. We are happy to help!",
+      title: "Device Repair Karana Hai?",
+      subtitle: "Contact Karein",
+      description:
+        "Shop visit karein, direct call karein, ya WhatsApp par quick diagnosis aur clear quote lein.",
       form: {
         fullName: "Full Name",
         mobile: "Mobile Number",
-        message: "Your Message",
-        placeholderName: "Enter name",
+        device: "Device / Issue",
+        message: "Message",
+        placeholderName: "Apna naam likhein",
         placeholderPhone: "+91 00000 00000",
-        placeholderMessage: "Tell us about your issue..."
+        placeholderMessage: "Device issue ke baare me batayein...",
       },
       info: {
-        call: "Call Us",
+        call: "Call Karein",
         whatsapp: "WhatsApp Chat",
         location: "Location",
         visitUs: "Visit Us",
-        getDirections: "Get Directions"
-      }
+        getDirections: "Directions Dekhein",
+      },
+    },
+    testimonials: {
+      title: "Customers Hum Par Trust Karte Hain",
+    },
+    ai: {
+      welcome: "Hi! Apna device issue batayein, main best next step guide karunga.",
+      button: "Repair Assistant",
+      placeholder: "Apna issue type karein...",
     },
     footer: {
-      description: "Leading experts in mobile and watch repairs. Providing high-quality accessories and expert servicing since 2009.",
-      quickLinks: "Quick Links",
-      contactInfo: "Contact Info",
-      copy: "© 2024 AL-MADINA TELECOM. All rights reserved."
-    }
+      tagline:
+        "Bhiwandi customers ke liye premium mobile repairs, watch service, aur trusted accessories.",
+      explore: "Explore",
+      expertise: "Expertise",
+      connect: "Connect",
+      rights: "All rights reserved.",
+    },
   },
-  hi: {
-    nav: {
-      home: "मुख्य पृष्ठ",
-      services: "सेवाएं",
-      products: "प्रोडक्ट्स",
-      about: "हमारे बारे में",
-      contact: "संपर्क",
-      bookNow: "अभी बुक करें"
-    },
-    hero: {
-      tagline: "भरोसेमंद प्रोफेशनल सेवा",
-      title: "प्रीमियम मोबाइल और वॉच केयर सेंटर",
-      description: "15+ वर्षों से अधिक समय से मोबाइल टेलीकॉम मरम्मत में अग्रणी विशेषज्ञ। हम उसी दिन मरम्मत, ओरिजिनल पार्ट्स और एक्सेसरीज का बेहतरीन संग्रह प्रदान करते हैं।",
-      cta: "अपॉइंटमेंट बुक करें",
-      call: "अभी कॉल करें",
-      years: "वर्ष",
-      repairs: "मरम्मत",
-      rating: "रेटिंग"
-    },
-    common: {
-      whatsappNow: "व्हाट्सएप अभी",
-      orderViaWhatsApp: "व्हाट्सएप के माध्यम से ऑर्डर करें",
-      learnMore: "अधिक जानें",
-      send: "भेजें",
-      sending: "भेज रहा है...",
-      success: "सफलता!",
-      experience: "अनुभव",
-      wholesale: "थोक पूछताछ"
-    },
-    services: {
-      title: "विशेषज्ञ मरम्मत सेवाएं",
-      subtitle: "प्रोफेशनल समाधान",
-      mobile: {
-        title: "मोबाइल मरम्मत",
-        desc: "सभी ब्रांड के स्मार्टफोन (सैमसंग, आईफोन, ओप्पो, वीवो, रियलमी, शाओमी आदि) फिक्स।"
-      },
-      watch: {
-        title: "घड़ी की मरम्मत",
-        desc: "ओरिजिनल पार्ट्स के साथ सभी डिजिटल और एनालॉग घड़ियों के लिए विशेषज्ञ सर्विसिंग।"
-      },
-      accessories: {
-        title: "एक्सेसरीज बिक्री",
-        desc: "उच्च गुणवत्ता वाले चार्जर, केबल, टेम्पर्ड ग्लास और प्रीमियम मोबाइल कवर।"
-      },
-      audio: {
-        title: "नेकबैंड और ऑडियो",
-        desc: "नेकबैंड, इयरफ़ोन और सभी ऑडियो उपकरणों की मरम्मत और बिक्री।"
-      }
-    },
-    products: {
-      title: "प्रीमियम एक्सेसरीज",
-      subtitle: "गुणवत्ता संग्रह",
-      categories: {
-        all: "सभी आइटम",
-        audio: "ऑडियो गियर",
-        protection: "सुरक्षा",
-        power: "पावर और केबल"
-      }
-    },
-    about: {
-      title: "हमारी विरासत",
-      subtitle: "15+ वर्ष की सेवा",
-      ownerRole: "विशेषज्ञ तकनीशियन और संस्थापक",
-      bio: "एजाज अहमद मोबाइल मरम्मत उद्योग के दिग्गज हैं और उनके पास 1.5 दशक से अधिक का अनुभव है। गुणवत्ता के प्रति उनके समर्पण ने AL-MADINA TELECOM को भिवंडी में सबसे भरोसेमंद नाम बना दिया है।"
-    },
-    contact: {
-      title: "अपना डिवाइस रिपेयर कराने के लिए तैयार हैं?",
-      subtitle: "संपर्क करें",
-      description: "अपनी मरम्मत के लिए तुरंत कोटेशन पाने के लिए हमारी दुकान पर आएं या व्हाट्सएप के माध्यम से हमसे संपर्क करें। हमें आपकी सहायता करने में खुशी होगी!",
-      form: {
-        fullName: "पूरा नाम",
-        mobile: "मोबाइल नंबर",
-        message: "आपका संदेश",
-        placeholderName: "नाम दर्ज करें",
-        placeholderPhone: "+91 00000 00000",
-        placeholderMessage: "हमें अपनी समस्या के बारे में बताएं..."
-      },
-      info: {
-        call: "हमें कॉल करें",
-        whatsapp: "व्हाट्सएप चैट",
-        location: "स्थान",
-        visitUs: "हमसे मिलें",
-        getDirections: "रास्ता देखें"
-      }
-    },
-    footer: {
-      description: "मोबाइल और घड़ी की मरम्मत में अग्रणी विशेषज्ञ। 2009 से उच्च गुणवत्ता वाले सामान और विशेषज्ञ सर्विसिंग प्रदान कर रहे हैं।",
-      quickLinks: "त्वरित लिंक",
-      contactInfo: "संपर्क जानकारी",
-      copy: "© 2024 AL-MADINA TELECOM. सभी अधिकार सुरक्षित।"
-    }
-  }
 };

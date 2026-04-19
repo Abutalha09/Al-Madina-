@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Smartphone, Watch, Headphones, Zap, ShieldCheck, Clock, Settings, HardDrive, Battery, Image as ImageIcon } from "lucide-react";
+import { CheckCircle2, Clock, Headphones, Settings, ShieldCheck, Smartphone, Watch } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
 export default function Services() {
@@ -11,39 +11,40 @@ export default function Services() {
       description: t('services.mobile.desc'),
       icon: <Smartphone className="w-8 h-8" />,
       features: [t('hero.repairs'), "Original Parts", "Quick Service"],
-      color: "bg-blue-500",
+      tone: "text-primary bg-primary/10",
     },
     {
       title: t('services.watch.title'),
       description: t('services.watch.desc'),
       icon: <Watch className="w-8 h-8" />,
       features: ["Battery Change", "Strap Repair", "Glass Fix"],
-      color: "bg-slate-700",
+      tone: "text-secondary bg-slate-100",
     },
     {
       title: t('services.accessories.title'),
       description: t('services.accessories.desc'),
       icon: <Headphones className="w-8 h-8" />,
       features: ["Chargers", "Cables", "Covers"],
-      color: "bg-purple-500",
+      tone: "text-premium bg-premium/10",
     },
     {
       title: t('services.audio.title'),
       description: t('services.audio.desc'),
       icon: <Settings className="w-8 h-8" />,
       features: ["Neckbands", "Earphones", "Bluetooth"],
-      color: "bg-emerald-500",
+      tone: "text-success bg-success/10",
     },
   ];
   return (
-    <section id="services" className="py-24 bg-slate-50">
+    <section id="services" className="py-24 bg-slate-50 relative overflow-hidden">
+      <div className="absolute inset-0 premium-grid opacity-40" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20">
+        <div className="text-center mb-16 relative z-10">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-primary font-bold tracking-widest uppercase text-sm mb-4"
+            className="section-eyebrow mx-auto mb-5"
           >
             {t('services.subtitle')}
           </motion.p>
@@ -52,43 +53,41 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-black text-slate-900 mb-6"
+            className="display-font text-4xl md:text-5xl font-bold text-slate-950 mb-5 uppercase"
           >
             {t('services.title')}
           </motion.h2>
-          <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: 100 }}
-            viewport={{ once: true }}
-            className="h-1.5 bg-primary mx-auto rounded-full"
-          />
+          <p className="max-w-2xl mx-auto text-slate-500 text-sm leading-relaxed">
+            Clean diagnosis, transparent quotation, and reliable repair workflow for everyday devices.
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 relative z-10">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -6 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              className="vibrant-card p-6 rounded-lg hover:border-primary/50 transition-all flex flex-col items-center text-center"
+              transition={{ delay: index * 0.06 }}
+              className="premium-card p-6 flex flex-col min-h-[300px]"
             >
-              <div className="text-4xl mb-4 grayscale group-hover:grayscale-0 transition-all">
+              <div className={`relative w-14 h-14 mb-6 rounded-lg flex items-center justify-center ${service.tone}`}>
                 {service.icon}
               </div>
               
-              <h3 className="text-sm font-extrabold text-secondary uppercase tracking-wider mb-2">
+              <h3 className="relative text-sm font-extrabold text-secondary uppercase tracking-wider mb-3">
                 {service.title}
               </h3>
               
-              <p className="text-[11px] text-slate-500 leading-relaxed mb-4">
+              <p className="relative text-sm text-slate-500 leading-relaxed mb-5">
                 {service.description}
               </p>
               
-              <div className="flex flex-wrap justify-center gap-1 mt-auto">
+              <div className="relative flex flex-wrap gap-2 mt-auto">
                 {service.features.map(f => (
-                  <span key={f} className="text-[9px] font-bold uppercase tracking-tighter bg-slate-100 text-slate-400 px-2 py-0.5 rounded">
+                  <span key={f} className="text-[9px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 px-2 py-1 rounded-md">
                     {f}
                   </span>
                 ))}
@@ -98,27 +97,27 @@ export default function Services() {
         </div>
         
         {/* Quick Highlights */}
-        <div className="mt-20 bg-secondary px-8 py-10 rounded-xl grid md:grid-cols-3 gap-8 text-center md:text-left border-b-3 border-primary shadow-xl">
-          <div className="space-y-3">
-            <div className="bg-primary/20 w-10 h-10 rounded-lg flex items-center justify-center text-primary mx-auto md:mx-0">
-              <ShieldCheck className="w-5 h-5 font-black" />
+        <div className="mt-16 premium-dark-card px-6 md:px-8 py-8 grid md:grid-cols-3 gap-6 text-center md:text-left relative z-10">
+          <div className="relative space-y-3">
+            <div className="bg-primary/10 w-11 h-11 rounded-lg flex items-center justify-center text-accent mx-auto md:mx-0">
+              <ShieldCheck className="w-5 h-5" />
             </div>
             <h4 className="text-white font-black text-xs uppercase tracking-widest">15+ {t('hero.years')} {t('common.experience')}</h4>
-            <p className="text-slate-400 text-[11px] leading-relaxed uppercase tracking-tighter">Serving the local community with honesty and expert technical skill since 2009.</p>
+            <p className="text-slate-400 text-sm leading-relaxed">Serving the local community with honest guidance and skilled technical repairs since 2009.</p>
           </div>
-          <div className="space-y-3">
-            <div className="bg-primary/20 w-10 h-10 rounded-lg flex items-center justify-center text-accent mx-auto md:mx-0">
+          <div className="relative space-y-3">
+            <div className="bg-primary/10 w-11 h-11 rounded-lg flex items-center justify-center text-accent mx-auto md:mx-0">
               <Clock className="w-5 h-5" />
             </div>
             <h4 className="text-white font-black text-xs uppercase tracking-widest">Quick Turnaround</h4>
-            <p className="text-slate-400 text-[11px] leading-relaxed uppercase tracking-tighter">We value your time. Most repairs like screen or battery swaps are done in 1 hour.</p>
+            <p className="text-slate-400 text-sm leading-relaxed">Most common repairs like screen, battery, and charging fixes are handled quickly after diagnosis.</p>
           </div>
-          <div className="space-y-3">
-            <div className="bg-primary/20 w-10 h-10 rounded-lg flex items-center justify-center text-success mx-auto md:mx-0">
-              <Zap className="w-5 h-5" />
+          <div className="relative space-y-3">
+            <div className="bg-success/10 w-11 h-11 rounded-lg flex items-center justify-center text-success mx-auto md:mx-0">
+              <CheckCircle2 className="w-5 h-5" />
             </div>
-            <h4 className="text-white font-black text-xs uppercase tracking-widest">Best Price</h4>
-            <p className="text-slate-400 text-[11px] leading-relaxed uppercase tracking-tighter">Get premium repair service without breaking the bank. Transparent pricing always.</p>
+            <h4 className="text-white font-black text-xs uppercase tracking-widest">Clear Quote</h4>
+            <p className="text-slate-400 text-sm leading-relaxed">You get the repair price and part details upfront, before any final work starts.</p>
           </div>
         </div>
       </div>

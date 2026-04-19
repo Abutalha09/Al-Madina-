@@ -47,7 +47,7 @@ export default function BookingModal({
             initial={{ scale: 0.95, opacity: 0, y: 10 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0, y: 10 }}
-            className="relative w-full max-w-lg bg-white shadow-2xl overflow-hidden rounded-xl border border-slate-200"
+            className="relative w-full max-w-lg bg-white shadow-2xl overflow-hidden rounded-lg border border-slate-200"
           >
             <div className="flex justify-between items-center bg-secondary px-6 py-4 border-b-3 border-primary">
               <h3 className="text-sm font-black text-white uppercase tracking-[2px] flex items-center gap-2">
@@ -100,10 +100,21 @@ export default function BookingModal({
                       onChange={(e) => setFormData({ ...formData, device: e.target.value })}
                     />
                   </div>
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-black text-secondary uppercase tracking-widest">{t('contact.form.message')}</label>
+                    <textarea
+                      required
+                      rows={3}
+                      placeholder={t('contact.form.placeholderMessage')}
+                      className="w-full px-4 py-2.5 rounded-md border border-slate-200 focus:border-primary outline-none transition-all text-sm resize-none"
+                      value={formData.issue}
+                      onChange={(e) => setFormData({ ...formData, issue: e.target.value })}
+                    />
+                  </div>
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full bg-primary hover:bg-primary-dark text-white py-3.5 rounded-md text-sm font-black uppercase tracking-widest transition-all shadow-md active:scale-95"
+                      className="premium-button w-full py-3.5 text-sm font-black uppercase tracking-widest active:scale-95"
                     >
                       {t('hero.cta')}
                     </button>
@@ -118,7 +129,7 @@ export default function BookingModal({
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-success/10 rounded-full mb-6">
                     <CheckCircle className="w-8 h-8 text-success" />
                   </div>
-                  <h4 className="text-xl font-black text-secondary mb-2 uppercase tracking-tight">{t('common.success')}</h4>
+                  <h4 className="text-xl font-black text-secondary mb-2 uppercase tracking-wider">{t('common.success')}</h4>
                   <p className="text-slate-500 mb-8 text-sm max-w-sm mx-auto">
                     We've received your data. Click below to confirm via WhatsApp for instant support.
                   </p>

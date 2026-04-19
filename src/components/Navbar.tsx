@@ -36,15 +36,18 @@ export default function Navbar({ onBookClick }: { onBookClick: () => void }) {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-secondary/95 backdrop-blur-md py-2 shadow-lg border-b-3 border-primary"
-          : "bg-secondary py-3 border-b-3 border-primary"
+          ? "bg-secondary/90 backdrop-blur-xl py-2 shadow-2xl shadow-slate-950/20 border-b border-white/10"
+          : "bg-secondary/98 py-3 border-b border-white/10"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          <Link to="/" className="flex items-center gap-2">
-            <span className="text-xl font-extrabold text-white tracking-tighter">
-              AL-MADINA<span className="text-accent underline decoration-primary decoration-4 underline-offset-4"> TELECOM</span>
+          <Link to="/" className="flex items-center gap-3">
+            <span className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-accent shadow-lg">
+              <Smartphone className="w-5 h-5" />
+            </span>
+            <span className="display-font text-lg sm:text-xl font-bold text-white">
+              AL-MADINA<span className="text-accent"> TELECOM</span>
             </span>
           </Link>
 
@@ -55,29 +58,41 @@ export default function Navbar({ onBookClick }: { onBookClick: () => void }) {
                 key={link.name}
                 to={link.href}
                 className={({ isActive }) => 
-                  `text-xs font-bold uppercase tracking-widest transition-colors ${
-                    isActive ? "text-accent underline decoration-primary decoration-2 underline-offset-4" : "text-white/70 hover:text-white"
+                  `relative text-xs font-extrabold uppercase tracking-widest transition-colors py-2 ${
+                    isActive ? "text-white" : "text-white/60 hover:text-white"
                   }`
                 }
               >
-                {link.name}
+                {({ isActive }) => (
+                  <>
+                    {link.name}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-active-pill"
+                        className="absolute left-0 right-0 -bottom-1 h-0.5 rounded-full bg-accent"
+                      />
+                    )}
+                  </>
+                )}
               </NavLink>
             ))}
             
             <button
               onClick={toggleLanguage}
-              className="flex items-center gap-2 px-3 py-1.5 bg-white/10 hover:bg-white/20 text-white rounded-md text-[10px] font-black uppercase tracking-widest transition-all border border-white/20"
+              className="flex items-center gap-2 px-3 py-2 bg-white/10 hover:bg-white/20 text-white rounded-md text-[10px] font-black uppercase tracking-widest transition-all border border-white/20"
             >
-              <Languages className="w-3 h-3 text-primary" />
+              <Languages className="w-3.5 h-3.5 text-accent" />
               {language === 'en' ? 'Hindi' : 'English'}
             </button>
 
-            <button
+            <motion.button
               onClick={onBookClick}
-              className="bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-md text-xs font-extrabold uppercase tracking-wider transition-all shadow-md active:scale-95"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.96 }}
+              className="premium-button px-6 py-2.5 text-xs font-extrabold uppercase tracking-widest"
             >
               {t('nav.bookNow')}
-            </button>
+            </motion.button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -85,18 +100,21 @@ export default function Navbar({ onBookClick }: { onBookClick: () => void }) {
             <button
               onClick={toggleLanguage}
               className="p-2 bg-white/10 text-white rounded-md border border-white/20"
+              aria-label="Toggle language"
             >
-              <Languages className="w-5 h-5 text-primary" />
+              <Languages className="w-5 h-5 text-accent" />
             </button>
             <button
               onClick={onBookClick}
               className="bg-primary text-white p-2 rounded-md shadow-md"
+              aria-label="Book appointment"
             >
               <Phone className="w-5 h-5" />
             </button>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-white p-1"
+              aria-label="Toggle menu"
             >
               {isMenuOpen ? <X /> : <Menu />}
             </button>
@@ -111,7 +129,8 @@ export default function Navbar({ onBookClick }: { onBookClick: () => void }) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-secondary border-t border-slate-800"
+            transition={{ duration: 0.24 }}
+            className="md:hidden bg-secondary/98 border-t border-white/10"
           >
             <div className="px-4 pt-2 pb-6 space-y-1">
               {navLinks.map((link) => (
@@ -119,8 +138,8 @@ export default function Navbar({ onBookClick }: { onBookClick: () => void }) {
                   key={link.name}
                   to={link.href}
                   className={({ isActive }) => 
-                    `block px-3 py-4 text-base font-black uppercase tracking-widest border-l-4 ${
-                      isActive ? "bg-primary/10 border-primary text-white" : "border-transparent text-white/60"
+                    `block px-3 py-4 text-sm font-black uppercase tracking-widest border-l-4 rounded-md ${
+                      isActive ? "bg-primary/10 border-accent text-white" : "border-transparent text-white/60"
                     }`
                   }
                 >
@@ -130,13 +149,13 @@ export default function Navbar({ onBookClick }: { onBookClick: () => void }) {
               <div className="pt-4 flex gap-4 px-3">
                 <a
                   href={`tel:${SHOP_INFO.phone}`}
-                  className="flex-1 bg-white/10 text-white py-3 rounded-md flex justify-center items-center gap-2 text-xs font-black uppercase tracking-widest"
+                  className="flex-1 bg-white/10 text-white py-3 rounded-md flex justify-center items-center gap-2 text-[10px] font-black uppercase tracking-widest"
                 >
                   <Phone className="w-4 h-4" /> {t('hero.call')}
                 </a>
                 <a
                   href={`https://wa.me/${SHOP_INFO.whatsapp}`}
-                  className="flex-1 bg-success text-white py-3 rounded-md flex justify-center items-center gap-2 text-xs font-black uppercase tracking-widest"
+                  className="flex-1 bg-success text-white py-3 rounded-md flex justify-center items-center gap-2 text-[10px] font-black uppercase tracking-widest"
                 >
                   <MessageCircle className="w-4 h-4" /> {t('common.whatsappNow')}
                 </a>

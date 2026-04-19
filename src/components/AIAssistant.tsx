@@ -102,9 +102,10 @@ export default function AIAssistant() {
       {/* Floating Toggle Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-24 right-6 z-[60] bg-primary text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center group"
-        whileHover={{ scale: 1.05 }}
+        className="fixed bottom-24 right-6 z-[60] premium-button text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center group"
+        whileHover={{ scale: 1.05, y: -2 }}
         whileTap={{ scale: 0.95 }}
+        aria-label="Toggle repair assistant"
       >
         {isOpen ? <X className="w-6 h-6" /> : <Bot className="w-7 h-7" />}
         {!isOpen && (
@@ -121,7 +122,7 @@ export default function AIAssistant() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-40 right-6 z-[60] w-[380px] max-w-[calc(100vw-2rem)] bg-white rounded-xl shadow-2xl flex flex-col overflow-hidden border border-border-vibrant h-[550px]"
+            className="fixed bottom-40 right-6 z-[60] w-[380px] max-w-[calc(100vw-2rem)] bg-white rounded-lg shadow-2xl flex flex-col overflow-hidden border border-border-vibrant h-[550px]"
           >
             {/* Header */}
             <div className="bg-secondary p-4 flex items-center justify-between border-b-3 border-primary">
@@ -131,7 +132,7 @@ export default function AIAssistant() {
                 </div>
                 <div>
                   <h3 className="text-white text-xs font-black uppercase tracking-widest">Repair Assistant</h3>
-                  <p className="text-slate-400 text-[9px] font-bold uppercase tracking-tighter">Proper Guidance • Clean Solutions</p>
+                  <p className="text-slate-400 text-[9px] font-bold uppercase tracking-wider">Proper Guidance / Clean Solutions</p>
                 </div>
               </div>
               <button onClick={() => setIsOpen(false)} className="text-white/50 hover:text-white">
@@ -159,7 +160,7 @@ export default function AIAssistant() {
                             ul: ({ children }) => <ul className="list-disc pl-4 mb-2">{children}</ul>,
                             ol: ({ children }) => <ol className="list-decimal pl-4 mb-2">{children}</ol>,
                             li: ({ children }) => <li className="mb-1">{children}</li>,
-                            strong: ({ children }) => <span className="font-black text-primary uppercase text-[10px] tracking-tight">{children}</span>,
+                            strong: ({ children }) => <span className="font-black text-primary uppercase text-[10px] tracking-wider">{children}</span>,
                           }}
                         >
                           {m.text}

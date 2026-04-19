@@ -15,9 +15,10 @@ export default function WhatsAppButton() {
       onClick={handleWhatsApp}
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
-      whileHover={{ scale: 1.05 }}
+      whileHover={{ scale: 1.05, y: -2 }}
       whileTap={{ scale: 0.95 }}
-      className="fixed bottom-6 right-6 z-[60] bg-success text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center group"
+      className="fixed bottom-6 right-6 z-[60] bg-success text-white w-14 h-14 rounded-full shadow-xl shadow-green-900/20 flex items-center justify-center group"
+      aria-label="Open WhatsApp"
     >
       <MessageCircle className="w-7 h-7" />
       <span className="absolute right-full mr-4 bg-secondary text-white px-4 py-2 rounded-md text-[10px] font-black uppercase tracking-widest pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg border-r-4 border-primary">
