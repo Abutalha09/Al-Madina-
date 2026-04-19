@@ -6,7 +6,8 @@ import ReactMarkdown from 'react-markdown';
 import { SHOP_INFO } from '../constants';
 import { useLanguage } from '../context/LanguageContext';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const geminiApiKey = process.env.GEMINI_API_KEY;
+const ai = geminiApiKey ? new GoogleGenAI({ apiKey: geminiApiKey }) : null;
 
 interface Message {
   role: 'user' | 'bot';
@@ -47,10 +48,18 @@ export default function AIAssistant() {
     setIsLoading(true);
 
     try {
+      if (!ai) {
+        setMessages(prev => [
+          ...prev,
+          { role: 'bot', text: "AI assistant abhi configure nahi hai. Please direct WhatsApp par sampark karein." },
+        ]);
+        return;
+      }
+
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
         contents: [
-          ...messages.map(m => (m.role === 'user' ? `User: ${m.text}` : `Assistant: ${m.text}`)).join('\n'),
+          ...messages.map(m => (m.role === 'user' ? `User: ${m.text}` : `Assistant: ${m.text}`)),
           `User: ${userMessage}`
         ],
         config: {
