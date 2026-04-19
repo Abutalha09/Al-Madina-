@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { useState } from "react";
 import {
   BatteryCharging,
   CheckCircle2,
@@ -21,6 +22,8 @@ export default function Hero({ onBookClick }: { onBookClick: () => void }) {
     { label: "Battery", value: "Good", color: "bg-success" },
     { label: "Board", value: "Stable", color: "bg-premium" },
   ];
+
+  const [shopPhotoFailed, setShopPhotoFailed] = useState(false);
 
   return (
     <section id="home" className="relative pt-32 pb-16 lg:pb-20 min-h-[720px] flex items-center overflow-hidden bg-bg">
@@ -113,54 +116,35 @@ export default function Hero({ onBookClick }: { onBookClick: () => void }) {
               </div>
 
               <div className="relative z-10 grid md:grid-cols-[0.9fr_1.1fr] gap-6 p-5 sm:p-7 items-center h-[calc(100%-73px)]">
-                <div className="relative mx-auto w-[210px] max-w-full">
-                  <div className="absolute -left-8 top-12 premium-card p-3 text-secondary hidden sm:block">
-                    <div className="relative flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-primary" />
-                      <div>
-                        <p className="text-[9px] font-black uppercase tracking-widest text-slate-400">Fast Fix</p>
-                        <p className="text-xs font-black">Same Day</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="relative rounded-[2rem] border-[10px] border-slate-950 bg-slate-900 p-2 shadow-2xl shadow-black/40">
-                    <div className="relative aspect-[9/18] rounded-[1.45rem] overflow-hidden bg-gradient-to-b from-slate-800 via-slate-950 to-slate-900 border border-white/10">
-                      <div className="absolute left-1/2 top-2 h-1.5 w-16 -translate-x-1/2 rounded-full bg-white/20" />
-                      <div className="absolute inset-x-5 top-14 h-px bg-accent/60 animate-scan shadow-[0_0_24px_rgba(56,189,248,0.75)]" />
-                      <div className="absolute inset-0 grid place-items-center">
-                        <div className="w-24 h-24 rounded-lg border border-accent/25 bg-accent/10 grid place-items-center">
-                          <Smartphone className="w-12 h-12 text-accent" />
+                <div className="relative mx-auto w-[260px] max-w-full">
+                  <div className="relative rounded-[2rem] border-[10px] border-slate-950 bg-slate-900 p-2 shadow-2xl shadow-black/40 overflow-hidden">
+                    <div className="relative aspect-[9/18] rounded-[1.45rem] overflow-hidden bg-slate-900">
+                      {!shopPhotoFailed ? (
+                        <img
+                          src={SHOP_INFO.shopImage}
+                          alt={`${SHOP_INFO.name} shop front`}
+                          className="h-full w-full object-cover"
+                          onError={() => setShopPhotoFailed(true)}
+                        />
+                      ) : (
+                        <div className="h-full w-full bg-slate-900 flex flex-col items-center justify-center px-6 text-center gap-3">
+                          <Smartphone className="w-16 h-16 text-accent" />
+                          <p className="text-sm font-black uppercase tracking-widest text-white">Shop Front Image</p>
+                          <p className="text-[11px] text-slate-400">Place a shop photo at <span className="font-bold text-white">/shop-front.jpg</span></p>
                         </div>
-                      </div>
-                      <div className="absolute bottom-5 left-5 right-5 space-y-2">
-                        {diagnostics.map((item, index) => (
-                          <div key={item.label} className="rounded-md bg-white/10 border border-white/10 p-2">
-                            <div className="flex justify-between text-[9px] font-black uppercase tracking-widest text-white/60 mb-1">
-                              <span>{item.label}</span>
-                              <span>{item.value}</span>
-                            </div>
-                            <div className="h-1 rounded-full bg-white/10 overflow-hidden">
-                              <motion.div
-                                initial={{ width: 0 }}
-                                animate={{ width: index === 0 ? "98%" : index === 1 ? "76%" : "88%" }}
-                                transition={{ duration: 1.2, delay: 0.35 + index * 0.15 }}
-                                className={`h-full ${item.color}`}
-                              />
-                            </div>
-                          </div>
-                        ))}
-                      </div>
+                      )}
+                    </div>
+                    <div className="absolute bottom-4 left-4 right-4 rounded-3xl border border-white/10 bg-black/60 p-4 backdrop-blur-sm">
+                      <p className="text-[10px] uppercase tracking-[0.2em] text-accent font-black">Shop Front</p>
+                      <h3 className="text-xl font-black text-white leading-tight">{SHOP_INFO.name}</h3>
+                      <p className="text-xs text-slate-300 mt-1 line-clamp-2">{SHOP_INFO.location}</p>
                     </div>
                   </div>
-
-                  <div className="absolute -right-10 bottom-16 premium-card p-3 text-secondary hidden sm:block">
-                    <div className="relative flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-success" />
-                      <div>
-                        <p className="text-[9px] font-black uppercase tracking-widest text-slate-400">Parts</p>
-                        <p className="text-xs font-black">Quality Checked</p>
-                      </div>
+                  <div className="absolute -right-10 bottom-16 premium-card p-3 text-secondary hidden sm:flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-success" />
+                    <div>
+                      <p className="text-[9px] font-black uppercase tracking-widest text-slate-400">Parts</p>
+                      <p className="text-xs font-black">Quality Checked</p>
                     </div>
                   </div>
                 </div>

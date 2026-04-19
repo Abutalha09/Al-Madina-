@@ -14,6 +14,26 @@ interface Message {
   text: string;
 }
 
+const getFallbackAnswer = (question: string) => {
+  const q = question.toLowerCase();
+  if (/(screen|display|glass|touch|broken|crack)/.test(q)) {
+    return "Screen repair ke liye pehle inspection karenge. Agar display cracked hai to exact model aur spare part availability ke hisaab se quote diya jayega. WhatsApp par photo bhej kar fast estimate lein.";
+  }
+  if (/(battery|charge|charging|power|power on|shut down)/.test(q)) {
+    return "Battery ya charging issue me sabse pehle charger aur port check karte hain. Agar battery weak ho gayi ho to replacement recommend karte hain. Exact rate ke liye WhatsApp par phone details bhejein.";
+  }
+  if (/(speaker|mic|audio|sound|call)/.test(q)) {
+    return "Speaker ya microphone issue me hum internal cleaning aur component test karte hain. Agar part replace karna pade to original ya quality-compatible part use karte hain. Please WhatsApp par model bhejein.";
+  }
+  if (/(camera|photo|focus|flash)/.test(q)) {
+    return "Camera problem me pehle lens aur module inspection hoti hai. Agar module replacement zaroori ho to genuine spare part lagate hain. WhatsApp par issue detail bhejein.";
+  }
+  if (/(price|cost|how much|charge)/.test(q)) {
+    return `Exact cost problem aur device model par depend karta hai. Sabse tez tareeka hai WhatsApp par model aur problem bhejna: https://wa.me/${SHOP_INFO.whatsapp}`;
+  }
+  return `AI assistant is currently running in local fallback mode because the cloud API key is not configured. Please ask your question once more or contact us directly on WhatsApp: https://wa.me/${SHOP_INFO.whatsapp}`;
+};
+
 export default function AIAssistant() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
@@ -49,9 +69,10 @@ export default function AIAssistant() {
 
     try {
       if (!ai) {
+        const fallbackText = getFallbackAnswer(userMessage);
         setMessages(prev => [
           ...prev,
-          { role: 'bot', text: "AI assistant abhi configure nahi hai. Please direct WhatsApp par sampark karein." },
+          { role: 'bot', text: fallbackText },
         ]);
         return;
       }

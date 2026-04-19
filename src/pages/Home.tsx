@@ -1,5 +1,4 @@
 import Hero from '../components/Hero';
-import LocationSection from '../components/LocationSection';
 import Services from '../components/Services';
 import Testimonials from '../components/Testimonials';
 import { motion } from 'motion/react';
@@ -41,8 +40,6 @@ export default function Home({ onBookClick }: { onBookClick: () => void }) {
           ))}
         </div>
       </section>
-
-      <LocationSection />
 
       <Services />
 
