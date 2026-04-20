@@ -24,14 +24,14 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     let value: any = translations[language];
     
     for (const k of keys) {
-      if (value && value[k]) {
+      if (value && value[k] !== undefined) {
         value = value[k];
       } else {
         return key; // Fallback to key if not found
       }
     }
     
-    return typeof value === 'string' ? value : key;
+    return value !== undefined ? value : key;
   };
 
   return (
