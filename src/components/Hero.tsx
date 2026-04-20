@@ -18,9 +18,9 @@ import { useLanguage } from "../context/LanguageContext";
 export default function Hero({ onBookClick }: { onBookClick: () => void }) {
   const { t } = useLanguage();
   const diagnostics = [
-    { label: "Display", value: "98%", color: "bg-primary" },
-    { label: "Battery", value: "Good", color: "bg-success" },
-    { label: "Board", value: "Stable", color: "bg-premium" },
+    { label: t('hero.diagnostics.display'), value: "98%", color: "bg-primary" },
+    { label: t('hero.diagnostics.battery'), value: t('hero.diagnostics.good'), color: "bg-success" },
+    { label: t('hero.diagnostics.board'), value: t('hero.diagnostics.stable'), color: "bg-premium" },
   ];
 
   const [shopPhotoFailed, setShopPhotoFailed] = useState(false);
@@ -69,7 +69,7 @@ export default function Hero({ onBookClick }: { onBookClick: () => void }) {
                 className="secondary-button flex-1 sm:flex-none px-6 py-4 font-bold text-sm"
               >
                 <MessageCircle className="w-4 h-4 text-success" />
-                <span>WhatsApp</span>
+                <span>{t('hero.whatsapp')}</span>
               </a>
             </div>
           </div>

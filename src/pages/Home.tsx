@@ -5,13 +5,15 @@ import { motion } from 'motion/react';
 import { SHOP_INFO } from '../constants';
 import { ArrowRight, MessageCircle, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Home({ onBookClick }: { onBookClick: () => void }) {
+  const { t } = useLanguage();
   const stats = [
-    { label: "Expert Repairs", value: "50k+", color: "text-primary" },
-    { label: "Happy Clients", value: "20k+", color: "text-success" },
-    { label: "Phone Brands", value: "All", color: "text-premium" },
-    { label: "Part Support", value: "Clear", color: "text-secondary" },
+    { label: t('home.stats.expertRepairs'), value: "50k+", color: "text-primary" },
+    { label: t('home.stats.happyClients'), value: "20k+", color: "text-success" },
+    { label: t('home.stats.phoneBrands'), value: t('home.stats.allBrands'), color: "text-premium" },
+    { label: t('home.stats.partSupport'), value: t('home.stats.clearSupport'), color: "text-secondary" },
   ];
 
   return (
@@ -45,7 +47,7 @@ export default function Home({ onBookClick }: { onBookClick: () => void }) {
 
       <div className="bg-slate-50 pb-16 text-center">
         <Link to="/services" className="secondary-button px-5 py-3 items-center gap-2 text-primary font-black text-[10px] uppercase tracking-widest">
-          See All Services <ArrowRight className="w-3 h-3" />
+          {t('home.seeAllServices')} <ArrowRight className="w-3 h-3" />
         </Link>
       </div>
 
@@ -55,17 +57,17 @@ export default function Home({ onBookClick }: { onBookClick: () => void }) {
         <div className="absolute inset-0 premium-grid opacity-20" />
         <div className="max-w-7xl mx-auto px-4 text-center relative z-10">
           <h2 className="display-font text-3xl md:text-5xl font-bold mb-6 uppercase">
-            Honest Repairs. <span className="text-accent">Transparent Pricing.</span>
+            {t('home.honestRepairs')} <span className="text-accent">{t('home.transparentPricing')}</span>
           </h2>
           <p className="text-slate-400 mb-10 max-w-2xl mx-auto text-sm leading-relaxed">
-            We do not just fix phones. We help you choose the right repair, the right part, and the right accessory for your device.
+            {t('home.helpChoose')}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <button onClick={onBookClick} className="premium-button px-8 py-4 font-black uppercase text-xs tracking-widest active:scale-95">
-              <Phone className="w-4 h-4" /> Get Free Quote
+              <Phone className="w-4 h-4" /> {t('home.getFreeQuote')}
             </button>
             <a href={`https://wa.me/${SHOP_INFO.whatsapp}`} className="inline-flex items-center gap-2 bg-white text-secondary px-8 py-4 rounded-md font-black uppercase text-xs tracking-widest hover:bg-slate-100 transition-all shadow-lg">
-              <MessageCircle className="w-4 h-4 text-success" /> WhatsApp Ajaz
+              <MessageCircle className="w-4 h-4 text-success" /> {t('home.whatsappAjaz')}
             </a>
           </div>
         </div>

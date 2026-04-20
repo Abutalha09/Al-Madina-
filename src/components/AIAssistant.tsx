@@ -87,7 +87,7 @@ export default function AIAssistant() {
           systemInstruction: `You are an expert repair assistant for AL-MADINA TELECOM (Owner: ${SHOP_INFO.owner}, Experience: ${SHOP_INFO.experience} years).
           Location: ${SHOP_INFO.location}.
           Current Website Language: ${language === 'en' ? 'English' : 'Hindi'}.
-
+          IMPORTANT: Respond in ${language === 'en' ? 'English' : 'Hindi'}.
           STRICT FORMATTING RULES:
           1. CLEAN TEXT: DO NOT use asterisks (**) for bolding or any other markdown symbols like # or >.
           2. STRUCTURE: Use a clean, professional structure using the following sections if applicable:

@@ -2,29 +2,9 @@ import { motion } from "motion/react";
 import { Quote, Star } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
-const reviews = [
-  {
-    name: "Mohammad Irfan",
-    role: "Regular Customer",
-    content: "Best shop in town for mobile repairs. They fixed my broken iPhone screen quickly and the fitting was clean.",
-    rating: 5,
-  },
-  {
-    name: "Rahul Sharma",
-    role: "Local Resident",
-    content: "The technician is extremely skilled. My motherboard issue was handled properly with a clear price.",
-    rating: 5,
-  },
-  {
-    name: "Shakeel Ahmed",
-    role: "Business Owner",
-    content: "Great accessory collection and honest service. I always buy my chargers and neckbands from here.",
-    rating: 5,
-  },
-];
-
 export default function Testimonials() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const reviews = t('testimonials.reviews');
 
   return (
     <section className="py-24 bg-slate-50 border-y border-slate-100 overflow-hidden relative">

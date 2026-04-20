@@ -10,9 +10,9 @@ export default function About() {
 
   const stats = [
     { label: `${t('hero.years')} ${t('common.experience')}`, value: "15+", icon: <Clock className="w-5 h-5" /> },
-    { label: "Happy Customers", value: "20k+", icon: <Users className="w-5 h-5" /> },
+    { label: t('about.stats.happyCustomers'), value: "20k+", icon: <Users className="w-5 h-5" /> },
     { label: t('hero.repairs'), value: "50k+", icon: <User className="w-5 h-5" /> },
-    { label: "Service Quality", value: "100%", icon: <Award className="w-5 h-5" /> },
+    { label: t('about.stats.serviceQuality'), value: "100%", icon: <Award className="w-5 h-5" /> },
   ];
 
   return (
