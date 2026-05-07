@@ -16,22 +16,31 @@ interface Message {
 
 const getFallbackAnswer = (question: string) => {
   const q = question.toLowerCase();
-  if (/(screen|display|glass|touch|broken|crack)/.test(q)) {
+  if (/(screen|display|glass|touch|broken|crack|pixel|lcd|oled)/.test(q)) {
     return "Screen repair ke liye pehle inspection karenge. Agar display cracked hai to exact model aur spare part availability ke hisaab se quote diya jayega. WhatsApp par photo bhej kar fast estimate lein.";
   }
-  if (/(battery|charge|charging|power|power on|shut down)/.test(q)) {
+  if (/(battery|charge|charging|power|power on|shut down|drain|battery life|charge port)/.test(q)) {
     return "Battery ya charging issue me sabse pehle charger aur port check karte hain. Agar battery weak ho gayi ho to replacement recommend karte hain. Exact rate ke liye WhatsApp par phone details bhejein.";
   }
-  if (/(speaker|mic|audio|sound|call)/.test(q)) {
+  if (/(speaker|mic|audio|sound|call|mute|volume)/.test(q)) {
     return "Speaker ya microphone issue me hum internal cleaning aur component test karte hain. Agar part replace karna pade to original ya quality-compatible part use karte hain. Please WhatsApp par model bhejein.";
   }
-  if (/(camera|photo|focus|flash)/.test(q)) {
+  if (/(camera|photo|focus|flash|lens|selfie)/.test(q)) {
     return "Camera problem me pehle lens aur module inspection hoti hai. Agar module replacement zaroori ho to genuine spare part lagate hain. WhatsApp par issue detail bhejein.";
   }
-  if (/(price|cost|how much|charge)/.test(q)) {
+  if (/(wifi|network|mobile data|internet|signal|connect|connection)/.test(q)) {
+    return "Network ya internet problem ke liye pehle SIM, APN aur hardware check karte hain. Agar internal antenna ya board issue ho to repair ya replacement ka recommendation denge. Model aur issue details WhatsApp par bhejein.";
+  }
+  if (/(software|app|update|slow|freeze|restart|boot|reset|virus)/.test(q)) {
+    return "Software issue me system update, app cleanup aur factory reset jaise steps lene padte hain. Agar issue hardware se ho raha ho to woh bhi inspect karte hain. WhatsApp par exact model aur problem bhejein.";
+  }
+  if (/(water|liquid|moisture|wet|spill)/.test(q)) {
+    return "Liquid damage ke case me jaldi service center le aana important hai. Hum diagnosis ke baad board cleaning aur damaged component replacement suggest karte hain. WhatsApp par model aur incident detail bhejein.";
+  }
+  if (/(price|cost|how much|charge|rate|repair cost)/.test(q)) {
     return `Exact cost problem aur device model par depend karta hai. Sabse tez tareeka hai WhatsApp par model aur problem bhejna: https://wa.me/${SHOP_INFO.whatsapp}`;
   }
-  return `AI assistant is currently running in local fallback mode because the cloud API key is not configured. Please ask your question once more or contact us directly on WhatsApp: https://wa.me/${SHOP_INFO.whatsapp}`;
+  return `Aapka sawaal samajhne ke liye dhanyavaad. Yaha se direct estimate dena mushkil hai, lekin main suggest karta hoon: aap apna device model aur problem details WhatsApp par bhejein, taaki hum aapko exact recommendation aur cost bata saken. Contact: https://wa.me/${SHOP_INFO.whatsapp}`;
 };
 
 export default function AIAssistant() {
