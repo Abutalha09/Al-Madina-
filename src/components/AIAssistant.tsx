@@ -6,45 +6,12 @@ import ReactMarkdown from 'react-markdown';
 import { SHOP_INFO } from '../constants';
 import { useLanguage } from '../context/LanguageContext';
 
-const geminiApiKey = process.env.GEMINI_API_KEY;
-const ai = geminiApiKey ? new GoogleGenAI({ apiKey: geminiApiKey }) : null;
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 interface Message {
   role: 'user' | 'bot';
   text: string;
 }
-
-const getFallbackAnswer = (question: string) => {
-  const q = question.toLowerCase();
-  if (/(screen|display|glass|touch|broken|crack|pixel|lcd|oled)/.test(q)) {
-    return "Screen repair ke liye pehle inspection karenge. Agar display cracked hai to exact model aur spare part availability ke hisaab se quote diya jayega. WhatsApp par photo bhej kar fast estimate lein.";
-  }
-  if (/(battery|charge|charging|power|power on|shut down|drain|battery life|charge port)/.test(q)) {
-    return "Battery ya charging issue me sabse pehle charger aur port check karte hain. Agar battery weak ho gayi ho to replacement recommend karte hain. Exact rate ke liye WhatsApp par phone details bhejein.";
-  }
-  if (/(speaker|mic|audio|sound|call|mute|volume)/.test(q)) {
-    return "Speaker ya microphone issue me hum internal cleaning aur component test karte hain. Agar part replace karna pade to original ya quality-compatible part use karte hain. Please WhatsApp par model bhejein.";
-  }
-  if (/(camera|photo|focus|flash|lens|selfie)/.test(q)) {
-    return "Camera problem me pehle lens aur module inspection hoti hai. Agar module replacement zaroori ho to genuine spare part lagate hain. WhatsApp par issue detail bhejein.";
-  }
-  if (/(wifi|network|mobile data|internet|signal|connect|connection)/.test(q)) {
-    return "Network ya internet problem ke liye pehle SIM, APN aur hardware check karte hain. Agar internal antenna ya board issue ho to repair ya replacement ka recommendation denge. Model aur issue details WhatsApp par bhejein.";
-  }
-  if (/(software|app|update|slow|freeze|restart|boot|reset|virus)/.test(q)) {
-    return "Software issue me system update, app cleanup aur factory reset jaise steps lene padte hain. Agar issue hardware se ho raha ho to woh bhi inspect karte hain. WhatsApp par exact model aur problem bhejein.";
-  }
-  if (/(water|liquid|moisture|wet|spill)/.test(q)) {
-    return "Liquid damage ke case me jaldi service center le aana important hai. Hum diagnosis ke baad board cleaning aur damaged component replacement suggest karte hain. WhatsApp par model aur incident detail bhejein.";
-  }
-  if (/\b(hi+|hello|hey|Assalamualaikum Sir |good morning|good afternoon|good evening)\b/.test(q)) {
-    return `asslamualaikum Sir ! Main AL-MADINA TELECOM ka repair assistant hoon. Aap apna device model aur problem yahan type kar sakte hain, ya phir direct WhatsApp par detail bhej kar exact diagnosis aur rate hasil kar sakte hain: https://wa.me/${SHOP_INFO.whatsapp}`;
-  }
-  if (/(price|cost|how much|charge|rate|repair cost)/.test(q)) {
-    return `Exact cost problem aur device model par depend karta hai. Sabse tez tareeka hai WhatsApp par model aur problem bhejna: https://wa.me/${SHOP_INFO.whatsapp}`;
-  }
-  return `Aapka sawaal samajhne ke liye dhanyavaad. Yaha se direct estimate dena mushkil hai, lekin main suggest karta hoon: aap apna device model aur problem details WhatsApp par bhejein, taaki hum aapko exact recommendation aur cost bata saken. Contact: https://wa.me/${SHOP_INFO.whatsapp}`;
-};
 
 export default function AIAssistant() {
   const [isOpen, setIsOpen] = useState(false);
@@ -80,26 +47,17 @@ export default function AIAssistant() {
     setIsLoading(true);
 
     try {
-      if (!ai) {
-        const fallbackText = getFallbackAnswer(userMessage);
-        setMessages(prev => [
-          ...prev,
-          { role: 'bot', text: fallbackText },
-        ]);
-        return;
-      }
-
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
         contents: [
-          ...messages.map(m => (m.role === 'user' ? `User: ${m.text}` : `Assistant: ${m.text}`)),
+          ...messages.map(m => (m.role === 'user' ? `User: ${m.text}` : `Assistant: ${m.text}`)).join('\n'),
           `User: ${userMessage}`
         ],
         config: {
           systemInstruction: `You are an expert repair assistant for AL-MADINA TELECOM (Owner: ${SHOP_INFO.owner}, Experience: ${SHOP_INFO.experience} years).
           Location: ${SHOP_INFO.location}.
           Current Website Language: ${language === 'en' ? 'English' : 'Hindi'}.
-          IMPORTANT: Respond in ${language === 'en' ? 'English' : 'Hindi'}.
+
           STRICT FORMATTING RULES:
           1. CLEAN TEXT: DO NOT use asterisks (**) for bolding or any other markdown symbols like # or >.
           2. STRUCTURE: Use a clean, professional structure using the following sections if applicable:
@@ -135,10 +93,9 @@ export default function AIAssistant() {
       {/* Floating Toggle Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-24 right-6 z-[60] premium-button text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center group"
-        whileHover={{ scale: 1.05, y: -2 }}
+        className="fixed bottom-24 right-6 z-[60] bg-primary text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center group"
+        whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        aria-label="Toggle repair assistant"
       >
         {isOpen ? <X className="w-6 h-6" /> : <Bot className="w-7 h-7" />}
         {!isOpen && (
@@ -155,7 +112,7 @@ export default function AIAssistant() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-40 right-6 z-[60] w-[380px] max-w-[calc(100vw-2rem)] bg-white rounded-lg shadow-2xl flex flex-col overflow-hidden border border-border-vibrant h-[550px]"
+            className="fixed bottom-40 right-6 z-[60] w-[380px] max-w-[calc(100vw-2rem)] bg-white rounded-xl shadow-2xl flex flex-col overflow-hidden border border-border-vibrant h-[550px]"
           >
             {/* Header */}
             <div className="bg-secondary p-4 flex items-center justify-between border-b-3 border-primary">
@@ -165,7 +122,7 @@ export default function AIAssistant() {
                 </div>
                 <div>
                   <h3 className="text-white text-xs font-black uppercase tracking-widest">Repair Assistant</h3>
-                  <p className="text-slate-400 text-[9px] font-bold uppercase tracking-wider">Proper Guidance / Clean Solutions</p>
+                  <p className="text-slate-400 text-[9px] font-bold uppercase tracking-tighter">Proper Guidance • Clean Solutions</p>
                 </div>
               </div>
               <button onClick={() => setIsOpen(false)} className="text-white/50 hover:text-white">
@@ -193,7 +150,7 @@ export default function AIAssistant() {
                             ul: ({ children }) => <ul className="list-disc pl-4 mb-2">{children}</ul>,
                             ol: ({ children }) => <ol className="list-decimal pl-4 mb-2">{children}</ol>,
                             li: ({ children }) => <li className="mb-1">{children}</li>,
-                            strong: ({ children }) => <span className="font-black text-primary uppercase text-[10px] tracking-wider">{children}</span>,
+                            strong: ({ children }) => <span className="font-black text-primary uppercase text-[10px] tracking-tight">{children}</span>,
                           }}
                         >
                           {m.text}
