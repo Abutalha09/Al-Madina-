@@ -37,7 +37,7 @@ const getFallbackAnswer = (question: string) => {
   if (/(water|liquid|moisture|wet|spill)/.test(q)) {
     return "Liquid damage ke case me jaldi service center le aana important hai. Hum diagnosis ke baad board cleaning aur damaged component replacement suggest karte hain. WhatsApp par model aur incident detail bhejein.";
   }
-  if (/\b(hi+|hello|hey|namaste|good morning|good afternoon|good evening)\b/.test(q)) {
+  if (/\b(hi+|hello|hey|Assalamualaikum Sir |good morning|good afternoon|good evening)\b/.test(q)) {
     return `Namaste! Main AL-MADINA TELECOM ka repair assistant hoon. Aap apna device model aur problem yahan type kar sakte hain, ya phir direct WhatsApp par detail bhej kar exact diagnosis aur rate hasil kar sakte hain: https://wa.me/${SHOP_INFO.whatsapp}`;
   }
   if (/(price|cost|how much|charge|rate|repair cost)/.test(q)) {
